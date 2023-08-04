@@ -1,0 +1,19 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fav_question_django
+    container_name: fav_question_django_1
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=localhost  # Change this to your domain or IP
