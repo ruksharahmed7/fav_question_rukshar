@@ -51,3 +51,9 @@ python manage.py test
 docker-compose build  # Build the Docker image for your Django app
 docker-compose up     # Run the Django app and database in containers
 ```
+
+## Screenshots of App
+
+![Homepage](https://github.com/ruksharahmed7/fav_question_rukshar/blob/main/images/1.png)
+
+![User Profile](https://github.com/ruksharahmed7/fav_question_rukshar/blob/main/images/2.png)
