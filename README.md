@@ -35,3 +35,8 @@ python manage.py generate_users 100
 ```
 python manage.py test
 ``` 
+
+## Environment
+
+- Python 3.9
+- Additional library: [faker](https://faker.readthedocs.io/en/master/) 
