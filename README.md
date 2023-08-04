@@ -1,1 +1,32 @@
 # fav_question_rukshar
+
+## [Views](https://github.com/ruksharahmed7/fav_question_rukshar/blob/main/question_test/question/views.py)
+
+- A view(**user_question_counts**) that provides a count of total favorite questions and read questions per user, paginated to 100 users per page. Clicking on the usernames will lead to the userprofile view.
+
+- Userprofile view(**user_profile**) lists read, unread, favorite, and unfavorite questions. One can filter questions by read, unread, favorite, and unfavorite status.
+
+## Data Generation
+
+- Four scripts are written to generate users, questions, favorite questions, and read questions data. They are in the [management](https://github.com/ruksharahmed7/fav_question_rukshar/tree/main/question_test/question/management/commands) folder. 
+
+- To run a data generation script, the CLI command is 
+```
+python manage.py generate_users 100
+``` 
+- The above command will generate 100 random user instances for the database 
+
+## Unit Tests
+- [tests.py](https://github.com/ruksharahmed7/fav_question_rukshar/blob/main/question_test/question/tests.py) script has unit tests for the previously mentioned 2 API views
+
+- For unit testing each view, random test data is generated using the *setUp* method. 
+
+- For **user_question_counts** view, we conduct the following tests:
+    - Whether the url response status code is 200(indicating success)
+    - Pagination testing: if a particular page loads the intended order of users.
+    - If a page loads the correct number of favorite and read questions
+
+- For **user_profile** view, we conduct the following tests:
+    - Whether the url response status code is 200(indicating success)
+    - Whether the page loads the info. of the correct user
+    - Whether the response contains the correct list of favorite/read/unread/unfovorite questions of the user with proper pagination
