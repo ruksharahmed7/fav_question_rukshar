@@ -1,0 +1,51 @@
+<!-- user_profile.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user.username }}'s Profile</title>
+    <!-- Add Tailwind CSS stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto py-8">
+        <h1 class="text-2xl font-bold mb-4">{{ user.username }}'s Profile</h1>
+        
+        <!-- Filter buttons -->
+        <div class="mt-4">
+            <a href="?status=all" class="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">All</a>
+            <a href="?status=read" class="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Read</a>
+            <a href="?status=unread" class="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Unread</a>
+            <a href="?status=favorite" class="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Favorite</a>
+            <a href="?status=unfavorite" class="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Unfavorite</a>
+        </div>
+
+        <!-- Display paginated questions -->
+        {% if page_obj %}
+            <h2 class="text-xl font-bold mt-4">{{ status }} Questions</h2>
+            <ul>
+                {% for question in page_obj %}
+                <li class="mt-4">{{ question.question }}</li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <div class="mt-4">
+                <!-- Pagination links -->
+                <span class="mr-4"><b> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</b></span>
+                {% if page_obj.has_previous %}
+                <a href="?status={{ status }}&page=1" class="mr-4 border border-blue-500 rounded px-2 py-1"><b>First</b></a>
+                <a href="?status={{ status }}&page={{ page_obj.previous_page_number }}" class="mr-4 border border-blue-500 rounded px-2 py-1"><b>Previous</b></a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <a href="?status={{ status }}&page={{ page_obj.next_page_number }}" class="mr-4 border border-blue-500 rounded px-2 py-1"><b>Next</b></a>
+                <a href="?status={{ status }}&page={{ page_obj.paginator.num_pages }}" class="border border-blue-500 rounded px-2 py-1"><b>Last</b></a>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>No questions matching the selected status.</p>
+        {% endif %}
+        <!-- Button to redirect to homepage -->
+        <a href="/" class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Go to Homepage</a>
+    </div>
+</body>
+</html>

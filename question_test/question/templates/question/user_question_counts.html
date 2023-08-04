@@ -1,0 +1,49 @@
+<!-- user_question_counts.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Question Counts</title>
+    <!-- Add Tailwind CSS stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mx-auto py-8">
+        <h1 class="text-2xl font-bold mb-4">User Question Counts</h1>
+        <!-- Table w/ 3 columns User, count of Favorite Question and count of Read Question -->
+        <table class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">User</th>
+                    <th class="px-4 py-2">Total FavoriteQuestions</th>
+                    <th class="px-4 py-2">Total ReadQuestions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_count in user_counts %}
+                <tr>
+                    <td class="border px-4 py-2">
+                        <!-- Link to user profile that shows list of  -->
+                        <a href="{% url 'user_profile' user_count.user.pk %}" class="text-blue-600 hover:underline">{{ user_count.user.username }}</a>
+                    </td>
+                    <td class="border px-4 py-2">{{ user_count.favorite_count }}</td>
+                    <td class="border px-4 py-2">{{ user_count.read_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <!-- Pagination links -->
+            <span class="mr-4">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_previous %}
+            <a href="?page=1" class="mr-4">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="mr-2">Previous</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="mr-4">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
