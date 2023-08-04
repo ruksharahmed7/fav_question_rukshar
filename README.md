@@ -30,3 +30,8 @@ python manage.py generate_users 100
     - Whether the url response status code is 200(indicating success)
     - Whether the page loads the info. of the correct user
     - Whether the response contains the correct list of favorite/read/unread/unfovorite questions of the user with proper pagination
+
+- The CLI command for conducting test script:
+```
+python manage.py test
+``` 
