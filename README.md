@@ -40,3 +40,14 @@ python manage.py test
 
 - Python 3.9
 - Additional library: [faker](https://faker.readthedocs.io/en/master/) 
+
+## Containerization
+
+- To dockerize the Django app, I created a [Dockerfile](https://github.com/ruksharahmed7/fav_question_rukshar/blob/main/question_test/Dockerfile) that defines the environment and configuration for running the Django application inside a Docker container. Additionally, I created a [docker-compose.yml](https://github.com/ruksharahmed7/fav_question_rukshar/blob/main/question_test/docker-compose.yml) file to manage the entire application stack.
+
+-  To build and run the Docker containers, open a terminal in the django project root and run the following commands:
+
+```
+docker-compose build  # Build the Docker image for your Django app
+docker-compose up     # Run the Django app and database in containers
+```
